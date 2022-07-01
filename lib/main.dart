@@ -35,6 +35,7 @@ class _HomePageState extends State<HomePage> {
   double _height = 150;
   double _age = 20;
   double _weight = 75;
+  double _score = 18.5;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,9 +50,10 @@ class _HomePageState extends State<HomePage> {
             backgroundColor:
                 MaterialStateProperty.all(mycolorpaletteAccent[100])),
         onPressed: () {
+          _score = _weight / (_height * _height);
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => ResultPage()),
+            MaterialPageRoute(builder: (context) => ResultPage(score: _score)),
           );
         },
         child: Text(
