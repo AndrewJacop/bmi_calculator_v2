@@ -36,6 +36,7 @@ class _HomePageState extends State<HomePage> {
   double _age = 20;
   double _weight = 75;
   double _score = 18.5;
+  bool isMale = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +51,8 @@ class _HomePageState extends State<HomePage> {
             backgroundColor:
                 MaterialStateProperty.all(mycolorpaletteAccent[100])),
         onPressed: () {
-          _score = _weight / (_height * _height);
+          _score = _weight * 10000 / (_height * _height);
+          print(_score);
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => ResultPage(score: _score)),
@@ -76,14 +78,21 @@ class _HomePageState extends State<HomePage> {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(12),
-                      child: Container(
-                        decoration: myBoxDecoration(300),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.male, size: 100, color: Colors.white),
-                            Text('MALE', style: txtStyle1),
-                          ],
+                      child: GestureDetector(
+                        onTap: (() {
+                          setState(() {
+                            isMale = true;
+                          });
+                        }),
+                        child: Container(
+                          decoration: myBoxDecoration(isMale ? 300 : 400),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.male, size: 100, color: Colors.white),
+                              Text('MALE', style: txtStyle1),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -91,14 +100,22 @@ class _HomePageState extends State<HomePage> {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(12),
-                      child: Container(
-                        decoration: myBoxDecoration(300),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.female, size: 100, color: Colors.white),
-                            Text('FEMALE', style: txtStyle1),
-                          ],
+                      child: GestureDetector(
+                        onTap: (() {
+                          setState(() {
+                            isMale = false;
+                          });
+                        }),
+                        child: Container(
+                          decoration: myBoxDecoration(isMale ? 400 : 300),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.female,
+                                  size: 100, color: Colors.white),
+                              Text('FEMALE', style: txtStyle1),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -110,7 +127,7 @@ class _HomePageState extends State<HomePage> {
               child: Padding(
                 padding: const EdgeInsets.all(12),
                 child: Container(
-                  decoration: myBoxDecoration(300),
+                  decoration: myBoxDecoration(400),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -130,6 +147,8 @@ class _HomePageState extends State<HomePage> {
                         divisions: 150,
                         min: 100,
                         max: 250,
+                        activeColor: mycolorpalette[200],
+                        inactiveColor: mycolorpalette[300],
                         onChanged: (double value) {
                           setState(() {
                             _height = value;
@@ -148,7 +167,7 @@ class _HomePageState extends State<HomePage> {
                   child: Padding(
                     padding: const EdgeInsets.all(12),
                     child: Container(
-                      decoration: myBoxDecoration(300),
+                      decoration: myBoxDecoration(400),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -203,7 +222,7 @@ class _HomePageState extends State<HomePage> {
                   child: Padding(
                     padding: const EdgeInsets.all(12),
                     child: Container(
-                      decoration: myBoxDecoration(300),
+                      decoration: myBoxDecoration(400),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

@@ -30,6 +30,11 @@ var txtStyle1 = const TextStyle(
 var txtStyle2 = GoogleFonts.montserrat(
     textStyle: const TextStyle(
         fontSize: 40, fontWeight: FontWeight.w900, color: Colors.white));
+TextStyle? txtStyle3({Color a = Colors.white}) {
+  return GoogleFonts.roboto(
+      textStyle:
+          TextStyle(fontSize: 150, fontWeight: FontWeight.w600, color: a));
+}
 
 myBoxDecoration(n) {
   return BoxDecoration(

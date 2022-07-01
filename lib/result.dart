@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
 import 'package:bmi_calculator_v2/vars.dart';
@@ -12,19 +10,19 @@ class ResultPage extends StatelessWidget {
   ResultPage({Key? key, required this.score}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    if (score > 18.5) {
+    if (score < 18.5) {
       type = 'Underweight';
       txtColor = Colors.cyan;
       comment = 'you need to eat a little more, buddy!';
-    } else if (score <= 18.5 && score > 25) {
+    } else if (score >= 18.5 && score < 25) {
       type = 'Normal';
       txtColor = Colors.green;
       comment = 'You have a perfect body, good job!';
-    } else if (score <= 25 && score > 30) {
+    } else if (score >= 25 && score < 30) {
       type = 'Overweight';
       txtColor = Colors.yellow;
       comment = 'you need to be careful, buddy!';
-    } else if (score <= 30 && score > 35) {
+    } else if (score >= 30 && score < 35) {
       type = 'Obese';
       txtColor = Colors.orange;
       comment = 'you need to hit the gym more, buddy!';
@@ -60,6 +58,7 @@ class ResultPage extends StatelessWidget {
       body: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const Text(
                 'Your Result',
@@ -76,9 +75,24 @@ class ResultPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text('$type'),
-                    Text('$score'),
-                    Text('$comment'),
+                    Text(
+                      '$type',
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          color: txtColor),
+                    ),
+                    Text(
+                      score.toStringAsFixed(1),
+                      style: txtStyle3(a: txtColor),
+                    ),
+                    Text(
+                      '$comment',
+                      style: TextStyle(
+                          fontSize: 25,
+                          //fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
                   ],
                 ),
               )),
